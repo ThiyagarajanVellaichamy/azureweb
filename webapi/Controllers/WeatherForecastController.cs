@@ -23,19 +23,16 @@ namespace webapi.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet("{city}")]
+        public IActionResult Get(string city)
         {
-            throw new NotImplementedException();
-            this._logger.LogInformation("nothing");
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            if (!string.Equals(city?.TrimEnd(), "Redmond", StringComparison.OrdinalIgnoreCase))
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+                throw new ArgumentException(
+                    $"We don't offer a weather forecast for {city}.", nameof(city));
+            }
+
+            return Ok("success");
         }
     }
 }
