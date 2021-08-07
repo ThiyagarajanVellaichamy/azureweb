@@ -26,6 +26,7 @@ namespace webapi.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+            throw new NotImplementedException();
             this._logger.LogInformation("nothing");
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
