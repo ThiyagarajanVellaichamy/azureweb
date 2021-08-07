@@ -26,8 +26,9 @@ namespace webapi.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+            this._logger.LogInformation("nothing");
             var rng = new Random();
-            return Enumerable.Range(1, 2).Select(index => new WeatherForecast
+            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = rng.Next(-20, 55),
